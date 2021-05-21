@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Earthquakes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <style>
+            #mapContainer {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                max-width: 100%;
+                max-height: 70%;
+            }
+        </style>
+    </head>
+
+
+    <body>
+        <div id="mapContainer">
+            
+        </div>
+        <div class="container" style="margin-top: 550px;">
+            <h1>Earthquake Time Intervals </h1>
+            <% if(active === 'hour'){ %>
+                <a class="btn btn-outline-success active" href="/hourly" role="button">Hourly</a>
+             <% } else{ %>
+                <a class="btn btn-outline-success" href="/hourly" role="button">Hourly</a>
+              <% } %>
+
+            <% if(active === 'day'){ %>
+                <a class="btn btn-outline-warning active" href="/daily" role="button">Daily</a>
+             <% } else{ %>
+                <a class="btn btn-outline-warning" href="/daily" role="button">Daily</a>
+              <% } %>
+            
+              <% if(active === 'week'){ %>
+                <a class="btn btn-outline-danger active" href="/weekly" role="button">Weekly</a>
+             <% } else{ %>
+                <a class="btn btn-outline-danger" href="/weekly" role="button">Weekly</a>
+              <% } %>
+            
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script>
+            var map = L.map('mapContainer').setView([0, 0], 2);
+
+            var layer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            }).addTo(map);
+
+            var temp = "<%= latitude  %>";
+            var latArray = temp.split(",")
+            temp = "<%= longitude  %>";
+            var longArray = temp.split(",")
+            temp = "<%= place  %>";
+            var placeArray = temp.split(/\^,/)
+            temp = "<%= mag  %>";
+            var magArray = temp.split(",")
+            temp = "<%= timestamp  %>";
+            var timestampArray = temp.split(",")
+
+            for (let i = 0; i < latArray.length; i++) {
+                var lat = latArray[i]
+                var long = longArray[i]
+                var place = placeArray[i]
+                var mag = magArray[i]
+                var timestamp = parseInt(timestampArray[i])
+                
+                var d = new Date(timestamp)
+                var datetime = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+
+                L.marker([lat, long]).addTo(map)
+                .bindPopup(place + "<br>" + mag + "<br>" + datetime)
+                
+            }
+        </script>
+    </body>    
+</html>
