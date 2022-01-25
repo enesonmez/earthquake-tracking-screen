@@ -5,7 +5,6 @@ const request = require('request');
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
 
 // index page
 app.get(['/','/hourly'], function(req, res) {
