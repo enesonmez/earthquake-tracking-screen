@@ -6,9 +6,9 @@ It was created to observe the earthquakes in the world on an hourly, daily, and 
 
 ### Built With
 
-* Express.js
-* Ejs
-* Bootstrap
+* [Express.js](https://expressjs.com/)
+* [Ejs](https://ejs.co/)
+* [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 
 ## Getting Started
@@ -22,7 +22,7 @@ It was created to observe the earthquakes in the world on an hourly, daily, and 
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/enesonmez/earthquake-tracking-screen.git
    ```
 2. Install NPM packages
    ```sh
@@ -39,7 +39,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 Enes Sönmez - [@enesonmez](https://www.linkedin.com/in/enesonmez/) - enesonmezx@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/enesonmez/earthquake-tracking-screen](https://github.com/enesonmez/earthquake-tracking-screen)
 
 
 
